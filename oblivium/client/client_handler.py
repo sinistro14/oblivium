@@ -13,11 +13,12 @@ class ClientHandler:
         return self.__client.receive()
 
     def handle(self):
+        print("Input message or type 'q' exit")
         while True:
             message = input("Message to send -> ")
             if message and message != "q":  # input "q" to exit
                 self.send(message)
                 response = str(self.receive())
-                print("Received from server: " + response)
+                print("Received from server -> " + response)
             else:
                 break

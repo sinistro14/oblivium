@@ -12,7 +12,7 @@ class ServerHandler(socketserver.BaseRequestHandler):
     The request handler class for our server.
 
     It is instantiated once per connection to the server, and must
-    override the handle() method to implement communication to the
+    override the handle method to implement communication to the
     client.
     """
 

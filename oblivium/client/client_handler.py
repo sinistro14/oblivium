@@ -3,6 +3,13 @@
 
 class ClientHandler:
 
+    """
+    The request handler class for our client
+
+    Must override the handle method to implement communication with the
+    server
+    """
+
     def __init__(self, client):
         self.__client = client
 

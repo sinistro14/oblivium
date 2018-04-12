@@ -10,6 +10,11 @@ from oblivium.client.exceptions import ClientSocketException, ClientTimeoutExcep
 
 class Client:
 
+    """
+    Client
+    Establishes connection to server
+    """
+
     def __init__(self):
         self.__sock = socket.socket(constants.SOCKET_AF, constants.SOCKET_TYPE)
         self.__sock.settimeout(constants.CLIENT_HANDLER_TIMEOUT)  # timeout
@@ -38,7 +43,7 @@ class Client:
 
     def stop(self):
         self.__sock.close()
-        print("Client: connection was closed")
+        print("Client: connection to server was closed")
 
     # should only be used by handler
     def send(self, data):

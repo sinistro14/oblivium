@@ -2,4 +2,5 @@
 
 
 class ClientTimeoutException(Exception):
+    """Raised when client's connection times out"""
     pass

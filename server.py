@@ -2,19 +2,16 @@
 
 from oblivium.common.network import constants
 from oblivium.server import Server, ServerHandler
+from oblivium.cmd import ServerCmd
 
 # Echo server program
 
 
 def main():
 
-    server_host, server_port = constants.SERVER_HOST, constants.SERVER_PORT
+    server = Server((constants.SERVER_HOST, constants.SERVER_PORT), ServerHandler)
 
-    server = Server((server_host, server_port), ServerHandler)
-
-    server.start()
-
-    print("Server: server was shutdown")
+    ServerCmd(server)
 
     exit(0)
 

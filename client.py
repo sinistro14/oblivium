@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 
 from oblivium.client import Client
+from oblivium.cmd import ClientCmd
 
 # Echo client program
 
@@ -9,11 +10,9 @@ def main():
 
     client = Client()
 
-    client.start()
+    ClientCmd(client)
 
-    client.stop()
-
-    print("Client: client was shutdown")
+    print("Client: server was shutdown")
 
     exit(0)
 

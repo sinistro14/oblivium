@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.6
 
+from oblivium.common.messages import InitialMessage
+
 
 class ClientHandler:
 
@@ -24,8 +26,8 @@ class ClientHandler:
         while True:
             message = input("Message to send -> ")
             if message and message != "q":  # input "q" to exit
-                self.send(message)
-                response = str(self.receive())
-                print("Received from server -> " + response)
+                self.send(InitialMessage(message))
+                response = self.receive()  # ResponseMessage
+                print("Received from server -> " + str(response.get_string()))
             else:
                 break

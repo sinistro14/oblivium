@@ -13,8 +13,8 @@ class ClientCmd(Command):
 
     def do_start(self, args):
         """Starts the client"""
+        print("Client: client was started")  # print before a blocking call
         self.__client.start()
-        print("Client: client was started")
 
     def do_stop(self, args):
         """Stops the client"""

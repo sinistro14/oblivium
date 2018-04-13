@@ -3,7 +3,8 @@
 import socketserver
 
 from oblivium.common.network import constants
-from oblivium.common.network.network_utils import string_to_base64, base64_to_string
+from oblivium.common.messages import ResponseMessage
+from oblivium.common.network.network_utils import object_to_base64, base64_to_object
 
 
 class ServerHandler(socketserver.BaseRequestHandler):
@@ -17,10 +18,10 @@ class ServerHandler(socketserver.BaseRequestHandler):
     """
 
     def send(self, data):
-        self.request.sendall(string_to_base64(data))
+        self.request.sendall(object_to_base64(data))
 
     def receive(self):
-        return base64_to_string(self.request.recv(constants.BYTES_TO_READ))
+        return base64_to_object(self.request.recv(constants.BYTES_TO_READ))
 
     def handle(self):
 
@@ -30,12 +31,13 @@ class ServerHandler(socketserver.BaseRequestHandler):
         try:
             while True:
                 # self.request is the TCP socket connected to the client
-                data = self.receive()
+                data = self.receive()  # get InitialMessage
                 if data:
                     print("{} wrote:".format(self.client_address))
-                    print(data)
+                    string = data.get_string()
+                    print(string)
                     # just send back the same data, but upper-cased
-                    self.send(data.upper())
+                    self.send(ResponseMessage(string.upper()))
                 else:
                     break
         except Exception as e:

@@ -3,6 +3,7 @@
 import threading
 import socketserver
 
+from oblivium.common import network_constants
 from oblivium.server.server_handler import ServerHandler
 from oblivium.server.server_controller import ServerController
 
@@ -11,8 +12,11 @@ class Server(socketserver.ThreadingMixIn, socketserver.TCPServer):
     """Server handler launcher thread"""
     __server_thread = None
 
-    def __init__(self, server_address):
-        super().__init__(server_address, ServerHandler)
+    def __init__(self):
+        super().__init__(
+            (network_constants.SERVER_HOST, network_constants.SERVER_PORT),
+            ServerHandler
+        )
 
     def start(self):
         """Starts server"""

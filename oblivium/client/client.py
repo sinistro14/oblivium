@@ -2,9 +2,9 @@
 
 import socket
 
-from oblivium.common.network import constants
+from oblivium.common import network_constants
 from oblivium.client.client_handler import ClientHandler
-from oblivium.common.network.network_utils import object_to_base64, base64_to_object
+from oblivium.common.network import object_to_base64, base64_to_object
 from oblivium.client.exceptions import ClientSocketException, ClientTimeoutException
 
 
@@ -16,13 +16,13 @@ class Client:
     """
 
     def __init__(self):
-        self.__sock = socket.socket(constants.SOCKET_AF, constants.SOCKET_TYPE)
-        self.__sock.settimeout(constants.CLIENT_HANDLER_TIMEOUT)  # timeout
+        self.__sock = socket.socket(network_constants.SOCKET_AF, network_constants.SOCKET_TYPE)
+        self.__sock.settimeout(network_constants.CLIENT_HANDLER_TIMEOUT)  # timeout
         self.__client_handler = ClientHandler(self)
 
     def start(self):
         try:
-            self.__sock.connect((constants.SERVER_HOST, constants.SERVER_PORT))
+            self.__sock.connect((network_constants.SERVER_HOST, network_constants.SERVER_PORT))
         except socket.error as e:
             print("Client: could not establish connection to server - {}".format(e.args[1]))
             exit(1)
@@ -57,7 +57,7 @@ class Client:
     # should only be used by handler
     def receive(self):
         try:
-            data = base64_to_object(self.__sock.recv(constants.BYTES_TO_READ))
+            data = base64_to_object(self.__sock.recv(network_constants.BYTES_TO_READ))
             if data:
                 return data
             else:

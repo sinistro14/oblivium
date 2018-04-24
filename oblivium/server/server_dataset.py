@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.6
 
 from oblivium.server.database import Data, DataSet
-from oblivium.common.protocol.settings import DATA_SET_FILE_PATH, DATA_SET_FILE_ACCESS
+from oblivium.common.protocol import DATA_SET_FILE_PATH, DATA_SET_FILE_ACCESS
 
 
 class ServerDataSet:

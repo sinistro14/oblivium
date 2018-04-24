@@ -2,13 +2,11 @@
 
 import socketserver
 
-from oblivium.common.protocol.settings import DATA_SET_SIZE_VALUE
+from oblivium.common import sec_constants, network_constants, protocol_settings
 from oblivium.common.security import CryptoHandler, RandomHandler
-from oblivium.common.security import constants as sec_consts
-from oblivium.common.network import constants as net_consts
 from oblivium.common.messages import ResponseMessage
 from oblivium.server.server_dataset import ServerDataSet
-from oblivium.common.network.network_utils import object_to_base64, base64_to_object
+from oblivium.common.network import object_to_base64, base64_to_object
 
 
 class ServerHandler(socketserver.BaseRequestHandler):
@@ -25,12 +23,12 @@ class ServerHandler(socketserver.BaseRequestHandler):
         self.request.sendall(object_to_base64(data))
 
     def receive(self):
-        return base64_to_object(self.request.recv(net_consts.BYTES_TO_READ))
+        return base64_to_object(self.request.recv(network_constants.BYTES_TO_READ))
 
     def handle(self):
         # self.request is the TCP socket connected to the client
         # defines N seconds timeout
-        self.request.settimeout(net_consts.SERVER_HANDLER_TIMEOUT)
+        self.request.settimeout(network_constants.SERVER_HANDLER_TIMEOUT)
 
         try:
             while True:
@@ -46,12 +44,14 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     server_public_key = server_key_pair.publickey()
 
                     # prepare available data sets
-                    data_set = ServerDataSet.get_instance().get_data_set(DATA_SET_SIZE_VALUE)
+                    data_set = ServerDataSet.get_instance().get_data_set(
+                        protocol_settings.DATA_SET_SIZE_VALUE
+                    )
                     data_set_topics = data_set.get_topics()
 
                     # generate random bytes list
                     random_messages = RandomHandler.get_random_bytes_list(
-                        sec_consts.NUMBER_OF_RANDOM_BYTES,
+                        sec_constants.NUMBER_OF_RANDOM_BYTES,
                         data_set.get_number_of_topics()
                     )
 

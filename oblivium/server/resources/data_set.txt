@@ -1,0 +1,92 @@
+[TOPIC] CLASSICAL
+"The Four Seasons" - Antonio Vivaldi
+"Ode to Joy" - Ludwig van Beethoven
+"O Fortuna" - Carl Orff
+"Hallelujah Chorus" - George F. Handel
+"Ride of the Valkyries" - Richard Wagner
+"Toccata in d minor" - Johann S. Bach
+"Eine Kleine Nachtmusik" - Wolfgang A. Mozart
+"Canon in D Major" - Johann Pachelbel
+"William Tell Overture" - Gioachino Rossini
+"Nocturne No. 2" - Frédéric Chopin
+
+[TOPIC] REGGAE
+"Oh Carolina" - Shaggy
+"One Love / People Get Ready" - Bob Marley & The Wailers
+"Red Red Wine" - UB40
+"The Harder They Come" - Jimmy Cliff
+"Is This Love" - Bob Marley
+"Tomorrow People" - Ziggy Marley
+"Israelite" - Desmond Dekker
+"Mr. Lover Man" - Shabba Ranks
+"Mama Africa" - Peter Tosh
+"No Woman, No Cry" - Bob Marley & The Wailers
+
+[TOPIC] ROCK
+"Stairway to Heaven" - Led Zeppelin
+"Bohemian Rhapsody" - Queen
+"Smells Like Teen Spirit" - Nirvana
+"Sweet Child O' Mine" - Guns N' Roses
+"Another Brick in the Wall" - Pink Floyd
+"Everlong" - Foo Fighters
+"Seven Nation Army" - The White Stripes
+"Walk This Way" - Aerosmith
+"Smoke On The Water" - Deep Purple
+"Purple Haze" - Jimi Hendrix
+
+[TOPIC] JAZZ
+"Take Five" - Dave Brubeck
+"Take The 'A' Train" - Duke Ellington
+"Summertime" - Ella Fitzgerald
+"'Round Midnight" - Thelonious Monk
+"So What" - Miles Davis
+"The Girl From Ipanema" - Stan Getz & Astrud Gilberto
+"Birdland" - Weather Report
+"My Favorite Things" - John Coltrane
+"A Night in Tunisia" - Dizzy Gillespie
+"West End Blues" - Louis Armstrong
+
+[TOPIC] COUNTRY
+"Cruise" - Florida Georgia Line
+"Take Your Time" - Sam Hunt
+"Friends in Low Places" - Garth Brooks
+"Tin Man" - Miranda Lambert
+"Somebody Like You" - Keith Urban
+"Amazed" - Lonestar
+"Daddy Sang Bass" - Johnny Cash
+"Live Like You Were Dying" - Tim McGraw
+"Need You Now" - Lady Antebellum
+"Have Mercy" - The Judds
+
+[TOPIC] POP
+"Apologize" - Timbaland Ft. OneRepublic
+"Here Without You" - 3 Doors Down
+"Don't Speak" - No Doubt
+"Wake Me Up!" - Avicii
+"Locked Out of Heaven" - Bruno Mars
+"Since U Been Gone" - Kelly Clarkson
+"Where Is The Love?" - The Black Eyed Peas
+"Shape Of You" - Ed Sheeran
+"Royals" - Lorde
+"I Want It That Way" - Backstreet Boys
+
+[TOPIC] PUNK
+"All the Small Things" - Blink-182
+"In Too Deep" - Sum 41
+"Teenage Kicks" - The Undertones
+"My Friends Over You" - New Found Glory
+"The Middle" - Jimmy Eat World
+"American Idiot" - Green Day
+"The Kids Aren't Alright" - The Offspring
+"God Save The Queen" - Sex Pistols
+"Ocean Avenue" - Yellowcard
+"Blitzkrieg Bop" - Ramones
+
+[TOPIC] FOLK
+"This Land is Your Land" - Woody Guthrie
+
+[TOPIC] SOUL
+"More Bounce to the Ounce" - Zapp
+
+[TOPIC] ELECTRONIC
+"One More Time" - Daft Punk

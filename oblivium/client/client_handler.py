@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 
-from oblivium.common.messages import InitialMessage
+from oblivium.common.security import CryptoHandler
+from oblivium.common.messages import RequestMessage, ConnectionRequest
 
 
 class ClientHandler:
@@ -22,12 +23,26 @@ class ClientHandler:
         return self.__client.receive()
 
     def handle(self):
-        print("Input message or type 'q' exit")
+
         while True:
-            message = input("Message to send -> ")
-            if message and message != "q":  # input "q" to exit
-                self.send(InitialMessage(message))
-                response = self.receive()  # ResponseMessage
-                print("Received from server -> " + str(response.get_string()))
+
+            # Establish connection to server
+            self.send(ConnectionRequest())
+            response = self.receive()  # get ResponseMessage
+            print("\n{}".format(response.get_topics()))
+
+            # Issue request
+            print("Which set do you wish to get information from ?")
+            print("Type -1 to exit")
+            b = int(input("> "))
+            if 0 <= b < response.get_number_of_topics():
+
+                x_b = response.get_random_messages()[b]  # get random message
+                k = 0   # TODO generate random bytes
+
+                v = 0   # TODO calculate v
+
+                self.send(RequestMessage(v))
+                break
             else:
                 break

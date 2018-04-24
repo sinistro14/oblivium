@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.6
 
-from oblivium.client import Client
-from oblivium.cmd import ClientCmd
+from oblivium import Client, ClientCmd
 
 # Echo client program
 

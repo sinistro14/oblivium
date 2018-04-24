@@ -1,15 +1,14 @@
 #!/usr/bin/env python3.6
 
 from oblivium.common.network import constants
-from oblivium.server import Server, ServerHandler
-from oblivium.cmd import ServerCmd
+from oblivium import Server, ServerCmd
 
 # Echo server program
 
 
 def main():
 
-    server = Server((constants.SERVER_HOST, constants.SERVER_PORT), ServerHandler)
+    server = Server((constants.SERVER_HOST, constants.SERVER_PORT))
 
     ServerCmd(server)
 

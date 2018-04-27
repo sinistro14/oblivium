@@ -13,7 +13,6 @@ class CryptoHandler:
         return RSA.generate(
                 constants.RSA_KEY_SIZE,                # key size
                 RandomHandler.get_random_generator(),  # random number generation function
-                None,                                  # progress_function, used for long key gen
                 constants.RSA_PUBLIC_EXPONENT          # public RSA exponent
         )
 

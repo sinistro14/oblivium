@@ -29,6 +29,9 @@ class ClientHandler:
             # Establish connection to server
             self.send(ConnectionRequest())
             response = self.receive()  # get ResponseMessage
+            server_public_key = response.get_public_key()
+            print(server_public_key)
+            print(response.get_random_messages)
             print("\n{}".format(response.get_topics()))
 
             # Issue request
@@ -38,6 +41,7 @@ class ClientHandler:
             if 0 <= b < response.get_number_of_topics():
 
                 x_b = response.get_random_messages()[b]  # get random message
+
                 k = 0   # TODO generate random bytes
 
                 v = 0   # TODO calculate v

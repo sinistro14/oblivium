@@ -58,7 +58,7 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     # send ResponseMessage
                     self.send(
                         ResponseMessage(
-                            server_public_key,
+                            server_public_key.exportKey(),
                             data_set_topics,
                             random_messages
                         )

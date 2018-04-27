@@ -23,3 +23,7 @@ class CryptoHandler:
     @staticmethod
     def decrypt_with_key(key, data):  # TODO proper testing
         return key.decrypt(data)
+
+    @staticmethod
+    def import_key(key):
+        return RSA.importKey(key)

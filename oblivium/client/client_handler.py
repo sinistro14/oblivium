@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 
-from oblivium.common.security import CryptoHandler
+from oblivium.common import sec_constants
+from oblivium.common.security import CryptoHandler, RandomHandler
 from oblivium.common.messages import RequestMessage, ConnectionRequest
 
 
@@ -42,9 +43,8 @@ class ClientHandler:
 
                 x_b = response.get_random_messages()[b]  # get random message
 
-                k = 0   # TODO generate random bytes
-
-                v = 0   # TODO calculate v
+                k = RandomHandler.get_random_bytes(sec_constants.NUMBER_OF_RANDOM_BYTES)   # TODO generate random bytes
+                v = CryptoHandler.amazing_function(k, server_public_key, x_b)  # TODO calculate v
 
                 self.send(RequestMessage(v))
                 break

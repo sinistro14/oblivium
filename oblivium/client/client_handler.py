@@ -44,7 +44,7 @@ class ClientHandler:
                 x_b = response.get_random_messages()[b]  # get random message
 
                 k = RandomHandler.get_random_bytes(sec_constants.NUMBER_OF_RANDOM_BYTES)   # TODO generate random bytes
-                v = CryptoHandler.amazing_function(k, server_public_key, x_b)  # TODO calculate v
+                v = CryptoHandler.amazing_function(k, server_public_key, x_b)
 
                 self.send(RequestMessage(v))
                 break

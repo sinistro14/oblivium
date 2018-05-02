@@ -27,13 +27,12 @@ class CryptoHandler:
     def import_key(key):
         return RSA.importKey(key)
 
-
     @staticmethod
     def amazing_function(k, key, xb):
-        pub_key= CryptoHandler.import_key(key)
-        k_int=int.from_bytes(k, byteorder='big')
-        t=k_int^pub_key.e
-        xb_int=int.from_bytes(xb, byteorder='big')
+        pub_key = CryptoHandler.import_key(key)
+        k_int = int.from_bytes(k, byteorder='big')
+        t = k_int ^ pub_key.e
+        xb_int = int.from_bytes(xb, byteorder='big')
         v = (t + xb_int) % pub_key.n
         return v.to_bytes(len(str(v)), 'big')
 

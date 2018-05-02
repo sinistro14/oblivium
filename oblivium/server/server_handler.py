@@ -48,6 +48,9 @@ class ServerHandler(socketserver.BaseRequestHandler):
                         protocol_settings.DATA_SET_SIZE_VALUE
                     )
                     data_set_topics = data_set.get_topics()
+                    m0 = data_set.get_info(0)
+                    m1 = data_set.get_info(1)
+                    print("Available messages are:\n{}\n{}".format(m0, m1))
 
                     # generate random bytes list
                     random_messages = RandomHandler.get_random_bytes_list(

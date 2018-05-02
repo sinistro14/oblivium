@@ -19,4 +19,4 @@ class Data:
         return len(self.__information)
 
     def get_random_info(self):
-        return self.__information[randint(0, self.get_data_size())]
+        return self.get_topic() + " " + self.__information[randint(0, self.get_data_size())]

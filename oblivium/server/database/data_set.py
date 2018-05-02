@@ -15,3 +15,6 @@ class DataSet:
 
     def get_number_of_topics(self):
         return len(self.__data_set)
+
+    def get_info(self, index):
+        return self.__data_set[index].get_random_info()

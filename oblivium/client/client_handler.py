@@ -4,7 +4,6 @@ from oblivium.common import sec_constants
 from oblivium.common.security import CryptoHandler, RandomHandler
 from oblivium.common.messages import RequestMessage, ConnectionRequest
 
-
 class ClientHandler:
 
     """
@@ -42,11 +41,21 @@ class ClientHandler:
             if 0 <= b < response.get_number_of_topics():
 
                 x_b = response.get_random_messages()[b]  # get random message
-
                 k = RandomHandler.get_random_bytes(sec_constants.NUMBER_OF_RANDOM_BYTES)   # TODO generate random bytes
                 v = CryptoHandler.amazing_function(k, server_public_key, x_b)
 
                 self.send(RequestMessage(v))
+
+                ml0 = self.receive()  # get SendMessage
+                ml1 = self.receive()
+
+                print("Received {}".format(ml0.get_k0()))
+                print("Received {}".format(ml1.get_k0()))
+
+                m = CryptoHandler.amazing_function_2(ml0.get_k0(), k)
+
+                print("DONE", m)
+
                 break
             else:
                 break

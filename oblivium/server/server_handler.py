@@ -39,31 +39,31 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     # handle presentation request
                     print("Connection established with {}".format(self.client_address))
 
+                    number_of_topics = 2
+
                     # prepare RSA key info
                     server_key_pair = CryptoHandler.generate_rsa_key_pair()
                     server_public_key = server_key_pair.publickey()
                     server_private_key = server_key_pair
+                    base_modulus = server_public_key.n
 
-                    # prepare available data sets
-                    data_set = ServerDataSet.get_instance().get_data_set(
-                        protocol_settings.DATA_SET_SIZE_VALUE
-                    )
-                    data_set_topics = data_set.get_topics()
-                    m0 = data_set.get_info(0)
-                    m1 = data_set.get_info(1)
-                    print("Available messages are:\n{}\n{}".format(m0, m1))
+                    ms = RandomHandler.get_random_integer_list(base_modulus, number_of_topics)
+
+                    m0 = ms[0]
+                    m1 = ms[1]
+                    print("Available messages are:\n0. {}\n1. {}".format(m0, m1))
 
                     # generate random bytes list
-                    random_messages = RandomHandler.get_random_bytes_list(
-                        sec_constants.NUMBER_OF_RANDOM_BYTES,
-                        data_set.get_number_of_topics()
+                    random_messages = RandomHandler.get_random_integer_list(
+                        base_modulus,
+                        number_of_topics
                     )
+                    print("Random messages:\n{}".format(random_messages))
 
                     # send ResponseMessage
                     self.send(
                         ResponseMessage(
                             server_public_key.exportKey(),
-                            data_set_topics,
                             random_messages
                         )
                     )
@@ -72,18 +72,18 @@ class ServerHandler(socketserver.BaseRequestHandler):
 
                     v = request.get_v()
 
-                    print("Received {}".format(v))
+                    print("Received v:\n{}".format(v))
 
-                    ml0 = CryptoHandler.encrypt_m(v, server_public_key,
-                                                  server_private_key, random_messages[0], m0)
-                    ml1 = CryptoHandler.encrypt_m(v, server_public_key,
-                                                  server_private_key, random_messages[1], m1)
+                    obt_message = ObtMessage()
 
-                    self.send(
-                        ObtMessage(
-                            (ml0, ml1)
+                    for i in range(0, number_of_topics):
+                        obt_message.add_m(
+                            CryptoHandler.encrypt_m(v, server_public_key,
+                                                    server_private_key, random_messages[i], ms[i])
                         )
-                    )
+
+                    self.send(obt_message)
+                    print("Finished communicating with client {}".format(self.client_address))
 
                     break
                 else:

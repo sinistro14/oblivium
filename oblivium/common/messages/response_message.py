@@ -10,22 +10,17 @@ class ResponseMessage:
     """
 
     __public_key = None
-    __topics = ""
     __random_messages = []
 
-    def __init__(self, public_key, topics, random_messages):
+    def __init__(self, public_key, random_messages):
         self.__public_key = public_key
-        self.__topics = topics
         self.__random_messages = random_messages
 
     def get_public_key(self):
         return self.__public_key
 
-    def get_topics(self):
-        return self.__topics
-
     def get_number_of_topics(self):
-        return len(self.__topics)
+        return len(self.__random_messages)
 
     def get_random_messages(self):
         return self.__random_messages

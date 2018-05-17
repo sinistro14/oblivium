@@ -49,12 +49,12 @@ class ClientHandler:
                 obt_message = self.receive()  # get ObtMessage
                 mb = obt_message.get_mn(b)
 
-                print("Received {}".format(obt_message.get_mn(0)))
-                print("Received {}".format(obt_message.get_mn(1)))
+                print("Received m0: {}".format(obt_message.get_mn(0)))
+                print("Received m1: {}".format(obt_message.get_mn(1)))
 
                 m = CryptoHandler.decrypt_m(mb, k)
 
-                print("DONE", m)
+                print("Return value was:\n{}".format(m))
 
                 break
             else:

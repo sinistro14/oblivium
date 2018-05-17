@@ -51,7 +51,7 @@ class ClientHandler:
 
                 m = CryptoHandler.decrypt_m(mb, k)
 
-                print("Return value with id {} was:\n{}".format(b, m))
+                print("Returned value, with id {}, was:\n{}".format(b, m))
 
                 break
             else:

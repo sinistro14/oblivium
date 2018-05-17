@@ -4,7 +4,32 @@ from Crypto.PublicKey import RSA
 from oblivium.common.security import constants
 from oblivium.common.security.random_handler import RandomHandler
 
+
 class CryptoHandler:
+
+    @staticmethod
+    def from_bytes_to_int(byte):
+        return int.from_bytes(byte, byteorder=constants.BYTE_ORDER)
+
+    @staticmethod
+    def from_int_to_bytes(integer):
+        return integer.to_bytes(10, byteorder=constants.BYTE_ORDER)
+
+    @staticmethod
+    def from_bytes_to_string(byte):
+        return byte.decode(constants.DEFAULT_ENCODING)
+
+    @staticmethod
+    def from_string_to_bytes(string):
+        return string.encode(constants.DEFAULT_ENCODING)
+
+    @staticmethod
+    def from_int_to_string(integer):
+        return str(integer)
+
+    @staticmethod
+    def from_string_to_int(string):
+        return int(string)
 
     @staticmethod
     def generate_rsa_key_pair():
@@ -27,35 +52,32 @@ class CryptoHandler:
         return RSA.importKey(key)
 
     @staticmethod
-    def amazing_function(k, key, xb):
+    def calculate_v(k, key, xb):
         pub_key = CryptoHandler.import_key(key)
-        k_int = int.from_bytes(k, byteorder='big')
-        xb_int = int.from_bytes(xb, byteorder='big')
-        v = (k_int ^ pub_key.e + xb_int) % pub_key.n
-        v_str = str(v)
-        v_byte = v_str.encode('utf-8')
+        k_int = CryptoHandler.from_bytes_to_int(k)
+        xb_int = CryptoHandler.from_bytes_to_int(xb)
+        v = (xb_int + (k_int ^ pub_key.e)) % pub_key.n
+        v_str = CryptoHandler.from_int_to_string(v)
+        v_byte = CryptoHandler.from_string_to_bytes(v_str)
         return v_byte
 
     @staticmethod
-    def amazing_function_1(v, publickey, privatekey, x, m):
-        v_str = v.decode('utf-8')
-        v_int = int(v_str)
-        x_int = int.from_bytes(x, byteorder='big')
-        k = (v_int - x_int) ^ privatekey.d % publickey.n
-        m_byte = m.encode('utf-8')
-        m_int = int.from_bytes(m_byte, byteorder='big')
+    def encrypt_m(v, pub_key, priv_key, x, m):
+        v_str = CryptoHandler.from_bytes_to_string(v)
+        v_int = CryptoHandler.from_string_to_int(v_str)
+        x_int = CryptoHandler.from_bytes_to_int(x)
+        k = pow(v_int - x_int, priv_key.d, pub_key.n)
+        m_byte = CryptoHandler.from_string_to_bytes(m)
+        m_int = CryptoHandler.from_bytes_to_int(m_byte)
         ml = m_int + k
-        ml_str = str(ml)
-        ml_byte = ml_str.encode('utf-8')
+        ml_str = CryptoHandler.from_int_to_string(ml)
+        ml_byte = CryptoHandler.from_string_to_bytes(ml_str)
         return ml_byte
 
     @staticmethod
-    def amazing_function_2(m, k):
-        m_str = m.decode("utf-8")
-        m_int = int(m_str)
-        k_int = int.from_bytes(k, byteorder='big')
+    def decrypt_m(m, k):
+        m_str = CryptoHandler.from_bytes_to_string(m)
+        m_int = CryptoHandler.from_string_to_int(m_str)
+        k_int = CryptoHandler.from_bytes_to_int(k)
         mb_int = m_int - k_int
         return mb_int
-
-
-

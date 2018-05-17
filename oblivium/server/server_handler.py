@@ -4,7 +4,7 @@ import socketserver
 
 from oblivium.common import sec_constants, network_constants, protocol_settings
 from oblivium.common.security import CryptoHandler, RandomHandler
-from oblivium.common.messages import ResponseMessage,  SendMessage
+from oblivium.common.messages import ResponseMessage,  ObtMessage
 from oblivium.server.server_dataset import ServerDataSet
 from oblivium.common.network import object_to_base64, base64_to_object
 
@@ -53,7 +53,6 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     m1 = data_set.get_info(1)
                     print("Available messages are:\n{}\n{}".format(m0, m1))
 
-
                     # generate random bytes list
                     random_messages = RandomHandler.get_random_bytes_list(
                         sec_constants.NUMBER_OF_RANDOM_BYTES,
@@ -70,21 +69,27 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     )
 
                     request = self.receive()  # get RequestMessage
-                    print("Received {}".format(request.get_v()))  # TODO use v accordingly
 
-                    ml0 = CryptoHandler.amazing_function_1(request.get_v(), server_public_key, server_private_key,
-                                                               random_messages[0], m0)
-                    ml1 = CryptoHandler.amazing_function_1(request.get_v(), server_public_key, server_private_key,
-                                                               random_messages[1], m1)
+                    v = request.get_v()
 
-                    self.send(SendMessage(ml0))
-                    self.send(SendMessage(ml1))
+                    print("Received {}".format(v))
+
+                    ml0 = CryptoHandler.encrypt_m(v, server_public_key,
+                                                  server_private_key, random_messages[0], m0)
+                    ml1 = CryptoHandler.encrypt_m(v, server_public_key,
+                                                  server_private_key, random_messages[1], m1)
+
+                    self.send(
+                        ObtMessage(
+                            (ml0, ml1)
+                        )
+                    )
 
                     break
                 else:
                     break
 
         except Exception as e:
-            print("Connection with {} {}".format(self.client_address, e))
+            print("Connection with {} - Error {}".format(self.client_address, e))
 
         print("Closing connection with {}".format(self.client_address))

@@ -29,9 +29,7 @@ class ClientHandler:
             # Establish connection to server
             self.send(ConnectionRequest())
             response = self.receive()  # get ResponseMessage
-            server_public_key = response.get_public_key()
-            print(server_public_key)
-            print(response.get_random_messages)
+            server_public_key = CryptoHandler.import_key(response.get_public_key())
             print("\n{}".format(response.get_topics()))
 
             # Issue request

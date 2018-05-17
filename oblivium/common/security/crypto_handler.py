@@ -52,8 +52,7 @@ class CryptoHandler:
         return RSA.importKey(key)
 
     @staticmethod
-    def calculate_v(k, key, xb):
-        pub_key = CryptoHandler.import_key(key)
+    def calculate_v(k, pub_key, xb):
         k_int = CryptoHandler.from_bytes_to_int(k)
         xb_int = CryptoHandler.from_bytes_to_int(xb)
         v = (xb_int + (k_int ^ pub_key.e)) % pub_key.n

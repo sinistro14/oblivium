@@ -38,7 +38,7 @@ class ClientHandler:
             if 0 <= b < response.get_number_of_topics():
 
                 x_b = response.get_random_messages()[b]  # get random message
-                k = RandomHandler.get_random_integers(3).__next__()
+                k = RandomHandler.get_random_integer_list(3, 1)[0]
                 v = CryptoHandler.calculate_v(k, server_public_key, x_b)
 
                 self.send(RequestMessage(v))

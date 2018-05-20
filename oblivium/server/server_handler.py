@@ -47,13 +47,15 @@ class ServerHandler(socketserver.BaseRequestHandler):
                     server_private_key = server_key_pair
                     base_modulus = server_public_key.n
 
+                    #generate number_of_topics messages to be sent
+
                     ms = RandomHandler.get_random_integer_list(base_modulus, number_of_topics)
 
                     m0 = ms[0]
                     m1 = ms[1]
                     print("Available messages are:\n0. {}\n1. {}".format(m0, m1))
 
-                    # generate random bytes list
+                    # generate random int list
                     random_messages = RandomHandler.get_random_integer_list(
                         base_modulus,
                         number_of_topics
@@ -68,7 +70,7 @@ class ServerHandler(socketserver.BaseRequestHandler):
                         )
                     )
 
-                    request = self.receive()  # get RequestMessage
+                    request = self.receive()  # get RequestMessage (v)
 
                     v = request.get_v()
 
@@ -76,12 +78,13 @@ class ServerHandler(socketserver.BaseRequestHandler):
 
                     obt_message = ObtMessage()
 
+                    #generate number_of_topics m's
                     for i in range(0, number_of_topics):
                         obt_message.add_m(
                             CryptoHandler.encrypt_m(v, server_public_key,
                                                     server_private_key, random_messages[i], ms[i])
                         )
-
+                    #send m's to the client
                     self.send(obt_message)
                     print("Finished communicating with client {}".format(self.client_address))
 

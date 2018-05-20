@@ -20,17 +20,17 @@ class CryptoHandler:
         return RSA.importKey(key)
 
     @staticmethod
-    def calculate_v(k, pub_key, xb):
+    def calculate_v(k, pub_key, xb): #encrypt the random k and blind it with x_b
         v = (xb + pow(k, pub_key.e)) % pub_key.n
         return v
 
     @staticmethod
-    def encrypt_m(v, pub_key, priv_key, x, m):
+    def encrypt_m(v, pub_key, priv_key, x, m): #get a value for k and add it to the original message
         k = pow(v - x, priv_key.d, pub_key.n)
         ml = m + k
         return ml
 
     @staticmethod
-    def decrypt_m(m, k):
+    def decrypt_m(m, k): #unblind the the right message with k
         mb_int = m - k
         return mb_int

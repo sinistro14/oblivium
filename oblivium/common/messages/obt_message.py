@@ -4,7 +4,7 @@
 class ObtMessage:
     """
     Message sent by the server to the client,
-    with list [m'0, m'1, ..., m'n], where m'n = mn ( (v - x_b)^d mod N )
+    with list [m'0, m'1, ..., m'n], where m'n = m_n + ( (v - x_b)^d mod N )
     """
     __m_list = None
 

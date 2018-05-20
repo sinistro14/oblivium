@@ -5,7 +5,6 @@ import socketserver
 
 from oblivium.common import network_constants
 from oblivium.server.server_handler import ServerHandler
-from oblivium.server.server_controller import ServerController
 
 
 class Server(socketserver.ThreadingMixIn, socketserver.TCPServer):
@@ -20,8 +19,6 @@ class Server(socketserver.ThreadingMixIn, socketserver.TCPServer):
 
     def start(self):
         """Starts server"""
-        # activates server controller
-        ServerController(self)
 
         # allows bind to port still in TIME_WAIT state
         self.allow_reuse_address = True

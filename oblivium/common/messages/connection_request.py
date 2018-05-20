@@ -2,7 +2,9 @@
 
 
 class ConnectionRequest:
-    """Represents the presentation message of a given client"""
+    """
+    Represents the presentation message of a given client
+    """
 
     __string = "ping"
 

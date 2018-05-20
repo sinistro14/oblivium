@@ -14,6 +14,6 @@ SERVER_HOST = 'localhost'
 SERVER_PORT = 10000                 # expected to be a free port
 
 # Data info
-BYTES_TO_READ = 2048                # TODO check if value is enough, later
+BYTES_TO_READ = 2048                # maximum bytes to be read from socket
 SERVER_HANDLER_TIMEOUT = 20         # server listener handlers timeout
 CLIENT_HANDLER_TIMEOUT = 20         # client handler timeout

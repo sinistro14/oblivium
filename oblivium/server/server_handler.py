@@ -5,7 +5,6 @@ import socketserver
 from oblivium.common import sec_constants, network_constants, protocol_settings
 from oblivium.common.security import CryptoHandler, RandomHandler
 from oblivium.common.messages import ResponseMessage,  ObtMessage
-from oblivium.server.server_dataset import ServerDataSet
 from oblivium.common.network import object_to_base64, base64_to_object
 
 

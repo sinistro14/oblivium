@@ -51,7 +51,8 @@ by the server upon connection.
 Run a server and client in two different command windows
 Server: > start  
 Client: > start  
-Client: > <b> , where b is the identifier (0 or 1) of the message to request  
+Client: > b  
+Where b is the identifier (0 or 1) of the message to request  
 Check that the received message matches the one available at the server  
 Shutdown client and server  
 Client: > stop  

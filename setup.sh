@@ -1,3 +1,3 @@
 #!/bin/sh
-#sudo apt install python3-pip
-pip3 install pycryptodome
+python3 -m pip install pycryptodome
+

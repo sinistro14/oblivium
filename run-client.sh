@@ -1,2 +1,2 @@
 #!/bin/sh
-python client.py
+python3 client.py

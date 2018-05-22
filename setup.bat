@@ -1,1 +1,2 @@
-pip3 install pycryptodome
+python3 -m pip install pycryptodome
+

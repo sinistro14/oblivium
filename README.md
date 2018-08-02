@@ -1,5 +1,5 @@
 # oblivium
-A Rabin 1-out-of-2 Oblivious Transfer protocol
+Oblivious Transfer 1-out-of-2 protocol
 
 ## Prerequisites
 Python version 3.6 is assumed to be installed, as well as pip package manager utility.
@@ -7,20 +7,20 @@ Python version 3.6 is assumed to be installed, as well as pip package manager ut
 ## Installation
 
 ### Linux
-Run "./setup.sh"
+Run ```./setup.sh```
 
 ### Windows
-Run ".\setup.bat"
+Run ```.\setup.bat```
 
 ## Setup
 
 ### Linux
-Start server: "./run-server.sh"  
-Start client: "./run-client.sh"  
+Start server: ```./run-server.sh```  
+Start client: ```./run-client.sh```  
 
 ### Windows
-Start server: ".\run-server.bat"  
-Start client: ".\run-client.bat"  
+Start server: ```.\run-server.bat```  
+Start client: ```.\run-client.bat```  
 
 ## How to run
 
@@ -44,26 +44,29 @@ stop - stops communication with the server, stop client handler
 
 ## Example run
 
-In order to test the protocol, after a client establishes connection to the server, he can
-choose a bit (0 or 1) in order to choose a value from the server, which are proposed, randomly,
-by the server upon connection.
+In order to test the protocol, after establishing connection to the server, a client is able
+to choose a bit (0 or 1) in order to select a value from those available on the server,
+which are randomly proposed upon connection.
 
-Run a server and client in two different command windows
+1. Run a server and a client in two different command windows
+```
 Server: > start  
 Client: > start  
-Client: > b  
-Where b is the identifier (0 or 1) of the message to request  
-Check that the received message matches the one available at the server  
-Shutdown client and server  
+```
+
+2. Request a message, providing the intended message identifier b (0 or 1)
+```
+Client: > b
+```
+Notice that the received message matches the one available at the server  
+
+3. Shutdown client and server
+```
 Client: > stop  
 Client: > exit  
 Server: > stop  
 Server: > exit  
-
-## Authors
-**Group 23**
-- **Tiago Gonçalves** - 81853 - (tiago.r.goncalves@tecnico.ulisboa.pt)
-- **Ana Neves**       - 90843 - (teresa.goucha@tecnico.ulisboa.pt)
+```
 
 ## License
 
